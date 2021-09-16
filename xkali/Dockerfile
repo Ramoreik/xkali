@@ -19,7 +19,8 @@ RUN apt install -y \
       virtualenvwrapper \
       neofetch \
       exploitdb \
-      zsh
+      zsh \
+      ncat
 
 RUN useradd $USER -m
 RUN chsh -s /usr/bin/zsh $USER
