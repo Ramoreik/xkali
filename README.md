@@ -17,6 +17,7 @@ $ bash setup.sh
 
 [*] This script will install xkali and setup the service.
 [!] !! This script  is intended to be run directly in the root of the repo (relative paths are used). !!
+[!] This script uses the $USER and $DISPLAY env variables.
 [?] Continue ? [y/n]: y
 
 [+] # which docker
@@ -24,13 +25,17 @@ $ bash setup.sh
 [+] # sudo mkdir /opt/xkali
 [+] # sudo chown gh0st:gh0st /opt/xkali
 [+] # cp xkali/* /opt/xkali
-[+] # cp xkali.service.bak xkali.service
 [+] # sudo sed -i.bak 's/{ DISPLAY }/:1/' xkali.service
+[+] # sudo sed -i.bak 's/{ USER }/gh0st/' xkali.service
 [+] # sudo cp xkali.service /etc/systemd/system/
 [+] # sudo systemctl enable --now xkali
+[+] # cp xkali.env ~/.xkali.env
+[+] # echo '. ~/.xkali.env' >> ~/.bashrc
+[+] # echo '. ~/.xkali.env' >> ~/.zshrc
 [+] # xhost +si:localuser:gh0st
 
 [+] Done, Xkali should be running.
+
 ```
 
 Once this script is done, normally burpsuite should pop up.  
