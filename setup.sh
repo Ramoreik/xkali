@@ -28,8 +28,23 @@ which docker > /dev/null
 echo "[+] # which docker-compose"
 which docker-compose >/dev/null
 
+echo "[+] checking: -z \$DISPLAY"
+if [ -z $DISPLAY ];then
+  echo "[!] The DISPLAY environment variable does not seem set."
+  exit 1
+fi 
+
+echo "[+] checking: -z \$USER"
+if [ -z $USER ];then
+  echo "[!] The USER envirnment variable does not seem set."
+  exit 1
+fi
+
 if ! id -Gn|grep -qw 'docker';then
-  echo "[!] The ${USER} user does not seem to be a member of the 'docker' group, continue ?"
+  echo "[!] The ${USER} user does not seem to be a member of the 'docker' group."
+  echo "[?] You can add it with :$ sudo usermod -aG docker ${USER}."
+  echo "[?] You can then logout and log back in.(or su - ${USER})"
+  exit 0
 fi
 
 ### Installing Xkali
