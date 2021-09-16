@@ -85,7 +85,7 @@ if [ -f ~/.bashrc ];then
     echo -e "# XKali Alias file\n. ~/.xkali.env" >> ~/.bashrc
   fi
 fi
-gh0st
+
 if [ -f ~/.zshrc ];then
   if ! grep -Fxq ". ~/.xkali.env" ~/.zshrc;
   then
