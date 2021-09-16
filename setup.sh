@@ -57,19 +57,16 @@ sudo chown "${USER}:${USER}" /opt/xkali
 echo "[+] # cp xkali/* /opt/xkali"
 cp xkali/* /opt/xkali/
 
-if [[ -f xkali.service.bak ]]
-then
-  echo "[+] # cp xkali.service xkali.service"
-  cp xkali.service tmp.xkali.service
-fi
+echo "[+] # cp xkali.service tmp.xkali.service"
+cp xkali.service tmp.xkali.service
 
-echo "[+] # sudo sed -i 's/{ DISPLAY }/${DISPLAY}/' xkali.service"
+echo "[+] # sudo sed -i 's/{ DISPLAY }/${DISPLAY}/' tmp.xkali.service"
 sudo sed -i "s/{ DISPLAY }/${DISPLAY}/" tmp.xkali.service
 
-echo "[+] # sudo sed -i 's/{ USER }/${USER}/' xkali.service"
+echo "[+] # sudo sed -i 's/{ USER }/${USER}/' tmp.xkali.service"
 sudo sed -i "s/{ USER }/${USER}/" tmp.xkali.service
 
-echo "[+] # sudo cp xkali.service /etc/systemd/system/"
+echo "[+] # sudo cp tmp.xkali.service /etc/systemd/system/xkali.service"
 sudo mv tmp.xkali.service /etc/systemd/system/xkali.service
 
 echo "[+] # sudo systemctl enable --now xkali"
@@ -88,7 +85,7 @@ if [ -f ~/.bashrc ];then
     echo -e "# XKali Alias file\n. ~/.xkali.env" >> ~/.bashrc
   fi
 fi
-
+gh0st
 if [ -f ~/.zshrc ];then
   if ! grep -Fxq ". ~/.xkali.env" ~/.zshrc;
   then
