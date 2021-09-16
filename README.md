@@ -63,4 +63,9 @@ journalctl -fu xkali
 ```
 
 I simply did this because burpsuite is open 100% of the time while i pentest.
+An important fact to know about the burpsuite running, 
+is that by default, it runs on 127.0.0.1:8080 on the container's interface.
+
+This means that the host system won't be able to publish it when it first starts.
+The solution : Proxy => Options => Proxy Listeners => change from 127.0.0.1 to docker interface.
 
