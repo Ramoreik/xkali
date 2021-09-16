@@ -1,8 +1,14 @@
 # X-Kali service
 This is a small script and docker/docker-compose container setup that creates an underlying kali instance.
 If you change setup you might need to manually modify the $DISPLAY variable that the service feeds to docker-compose.
-I used compose instead of a single docker command to let people modify it easily and add other services they might want start when pentesting.
+I used compose instead of a single docker command to let people modify it easily and add other services they might want started when pentesting.
 
+If you have a slower machine, take in consideration that creating a kali image with alot of tools preinstalled takes a bit of time.
+However, it is only done once, unless you modify the Dockerfile.
+
+This script is tested on POP-OS and other ubuntu derivatives, although it most likely works on any distro.
+
+!! THIS WILL NOT WORK WHILE USING WAYLAND !!
 ### Dependencies
 This script depends on the presence of docker and docker-compose to function correctly.
 ```
