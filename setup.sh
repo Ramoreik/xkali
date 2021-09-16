@@ -100,5 +100,6 @@ fi
 echo "[+] # xhost +si:localuser:${USER}"
 xhost "+si:localuser:${USER}" > /dev/null
 
-echo -e "\n[+] Done, Xkali should be running."
+echo -e "\n[*] Done, Xkali should be building itself."
+echo "[*] Monitor the creation: $ journalctl -fu xkali"
 
