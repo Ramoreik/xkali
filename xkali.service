@@ -2,9 +2,9 @@
 Description=X KALI - Kali container with X support.
 
 [Service]
-User=gh0st
-Group=gh0st
-Environment=DISPLAY=:1
+User={ USER }
+Group={ USER }
+Environment=DISPLAY={ DISPLAY }
 WorkingDirectory=/opt/xkali
 ExecStart=/usr/bin/docker-compose up -d
 Nice=0
