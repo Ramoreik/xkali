@@ -3,13 +3,18 @@ This is a small script and docker/docker-compose container setup that creates an
 If you change setup you might need to manually modify the $DISPLAY variable that the service feeds to docker-compose.
 I used compose instead of a single docker command to let people modify it easily and add other services they might want start when pentesting.
 
+### Dependencies
+This script depends on the presence of docker and docker-compose to function correctly.
+```
+sudo apt update && sudo apt install docker docker-compose
+```
+
 ### Installation
 I have written a small script that will setup the whole installation automagically.
 It installs the files in /opt/xkali and drops the service unit file in /etc/systemd/system/xkali.service.
 
 THE USER HAS TO BE PART OF THE DOCKER GROUP.
 For now this is the way it's configured to simplify setting up the X server permissions.
-
 
 The script will use $USER and $DISPLAY to set the correct values.
 ```bash
