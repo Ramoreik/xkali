@@ -82,7 +82,7 @@ echo "[+] # cp xkali.env ~/.xkali.env"
 cp xkali.env ~/.xkali.env
 
 if [ -f ~/.bashrc ];then
-  if ! grep -Fxq ". .xkali.env" ~/.bashrc;
+  if ! grep -Fxq ". ~/.xkali.env" ~/.bashrc;
   then
     echo "[+] # echo '. ~/.xkali.env' >> ~/.bashrc" 
     echo -e "# XKali Alias file\n. ~/.xkali.env" >> ~/.bashrc
@@ -90,7 +90,7 @@ if [ -f ~/.bashrc ];then
 fi
 
 if [ -f ~/.zshrc ];then
-  if ! grep -Fxq ". .xkali.env" ~/.zshrc;
+  if ! grep -Fxq ". ~/.xkali.env" ~/.zshrc;
   then
     echo "[+] # echo '. ~/.xkali.env' >> ~/.zshrc" 
     echo -e "# XKali Alias file\n. ~/.xkali.env" >> ~/.zshrc
