@@ -21,6 +21,7 @@ then
 fi
 
 ### Checks 
+# TODO: refine validation and handling for these lazy checks
 echo -e "\n[*] Validations ..."
 echo  "[+] # which docker"
 which docker > /dev/null
@@ -30,13 +31,13 @@ which docker-compose >/dev/null
 
 echo "[+] checking: -z \$DISPLAY"
 if [ -z $DISPLAY ];then
-  echo "[!] The DISPLAY environment variable does not seem set."
+  echo -e "\n[!] The DISPLAY environment variable does not seem set."
   exit 1
 fi 
 
 echo "[+] checking: -z \$USER"
 if [ -z $USER ];then
-  echo "[!] The USER envirnment variable does not seem set."
+  echo -e "\n[!] The USER environment variable does not seem set."
   exit 1
 fi
 
