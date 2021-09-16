@@ -11,7 +11,8 @@ EOF
 
 echo "[*] This script will install xkali and setup the service."
 echo "[!] !! This script  is intended to be run directly in the root of the repo (relative paths are used). !!"
-echo "[!] This script uses the \$USER and \$DISPLAY env variables."
+echo -e "[!] This script uses the \$USER and \$DISPLAY env variables.\n"
+
 read -p "[?] Continue ? [y/n]: "
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
@@ -20,13 +21,19 @@ then
 fi
 
 ### Checks 
-echo -e "\n[+] # which docker"
+echo -e "\n[*] Validations ..."
+echo  "[+] # which docker"
 which docker > /dev/null
 
 echo "[+] # which docker-compose"
 which docker-compose >/dev/null
 
+if ! id -Gn|grep -qw 'docker';then
+  echo "[!] The ${USER} user does not seem to be a member of the 'docker' group, continue ?"
+fi
+
 ### Installing Xkali
+echo -e "\n[*] Installation ..."
 if [[ -d /opt/xkali ]]
 then
   read -p "[?] /opt/xkali directory exists, reinstall ? [y/n]: " -n 1 -r
@@ -52,24 +59,25 @@ cp xkali/* /opt/xkali/
 
 if [[ -f xkali.service.bak ]]
 then
-  echo "[+] # cp xkali.service.bak xkali.service"
-  cp xkali.service.bak xkali.service
+  echo "[+] # cp xkali.service xkali.service"
+  cp xkali.service tmp.xkali.service
 fi
 
-echo "[+] # sudo sed -i.bak 's/{ DISPLAY }/${DISPLAY}/' xkali.service"
-sudo sed -i.bak "s/{ DISPLAY }/${DISPLAY}/" xkali.service
+echo "[+] # sudo sed -i 's/{ DISPLAY }/${DISPLAY}/' xkali.service"
+sudo sed -i "s/{ DISPLAY }/${DISPLAY}/" tmp.xkali.service
 
-echo "[+] # sudo sed -i.bak 's/{ USER }/${USER}/' xkali.service"
-sudo sed -i.bak "s/{ USER }/${USER}/" xkali.service
+echo "[+] # sudo sed -i 's/{ USER }/${USER}/' xkali.service"
+sudo sed -i "s/{ USER }/${USER}/" tmp.xkali.service
 
 echo "[+] # sudo cp xkali.service /etc/systemd/system/"
-sudo cp xkali.service /etc/systemd/system/
+sudo mv tmp.xkali.service /etc/systemd/system/xkali.service
 
 echo "[+] # sudo systemctl enable --now xkali"
 sudo systemctl enable --now xkali
 
 ### POST
 # Make a function
+echo -e "\n[*] POST Installation ..."
 echo "[+] # cp xkali.env ~/.xkali.env"
 cp xkali.env ~/.xkali.env
 

@@ -7,6 +7,10 @@ I used compose instead of a single docker command to let people modify it easily
 I have written a small script that will setup the whole installation automagically.
 It installs the files in /opt/xkali and drops the service unit file in /etc/systemd/system/xkali.service.
 
+THE USER HAS TO BE PART OF THE DOCKER GROUP.
+For now this is the way it's configured to simplify setting up the X server permissions.
+
+
 The script will use $USER and $DISPLAY to set the correct values.
 ```bash
 $ bash setup.sh
@@ -38,9 +42,14 @@ $ bash setup.sh
 
 ```
 
-Once this script is done, normally burpsuite should pop up.  
+Once this script is done, normally burpsuite should pop up after image creation.  
 For now the process that keeps the container alive if burpsuite,  
 but this might change.
+
+To monitor the creation you can use:
+```
+journalctl -fu xkali
+```
 
 I simply did this because burpsuite is open 100% of the time while i pentest.
 
