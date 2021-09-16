@@ -1,0 +1,13 @@
+[Unit]
+Description=X KALI - Kali container with X support.
+
+[Service]
+User=gh0st
+Group=gh0st
+Environment=DISPLAY=:1
+WorkingDirectory=/opt/xkali
+ExecStart=/usr/bin/docker-compose up -d
+Nice=0
+
+[Install]
+WantedBy=multi-user.target
