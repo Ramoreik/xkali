@@ -7,7 +7,12 @@ ARG SPACEVIM
 # Installing Packages
 RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive apt install -y \
-                      kali-tools-top10
+                      kali-tools-top10 \
+		      kali-tools-web \
+		      kali-tools-vulnerability \
+		      kali-tools-fuzzing \
+		      chisel
+
 RUN apt install -y \
       bpython \
       build-essential \
