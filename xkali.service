@@ -6,7 +6,8 @@ User={ USER }
 Group={ USER }
 Environment=DISPLAY={ DISPLAY }
 WorkingDirectory=/opt/xkali
-ExecStart=/usr/bin/docker-compose up -d
+ExecStart=/opt/xkali/start.sh
+ExecStop=/opt/xkali/stop.sh
 Nice=0
 
 [Install]
