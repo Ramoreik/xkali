@@ -11,7 +11,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 		      kali-tools-web \
 		      kali-tools-vulnerability \
 		      kali-tools-fuzzing \
-		      chisel
+		      chisel \
+		      nvim
 
 RUN apt install -y \
       bpython \
